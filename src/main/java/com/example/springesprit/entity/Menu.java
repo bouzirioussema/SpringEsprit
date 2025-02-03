@@ -25,6 +25,6 @@ public class Menu {
     @OneToMany
     private List<Composant> commande;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<ChefCuisinier> chefCuisiniers;
 }
