@@ -19,10 +19,10 @@ public class Menu {
     private TypeMenu typeMenu;
 
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Composant> composant;
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Composant> commande;
 
     @ManyToMany(cascade = CascadeType.ALL)

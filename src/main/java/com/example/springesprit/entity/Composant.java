@@ -17,6 +17,6 @@ public class Composant {
     @ManyToOne
     private Menu menu;
 
-    @OneToOne
+    @OneToOne(mappedBy = "composant", cascade = CascadeType.ALL)
     private DetailComposant detailsComposant;
 }
