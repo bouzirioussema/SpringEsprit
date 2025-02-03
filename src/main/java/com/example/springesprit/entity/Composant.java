@@ -15,9 +15,8 @@ public class Composant {
     private Float prix;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id")
     private Menu menu;
 
-    @OneToOne(mappedBy = "composant", cascade = CascadeType.ALL)
+    @OneToOne
     private DetailComposant detailsComposant;
 }

@@ -18,10 +18,13 @@ public class Menu {
     @Enumerated(EnumType.STRING)
     private TypeMenu typeMenu;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Composant> composant;
+
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<Composant> commande;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<ChefCuisinier> chefCuisiniers;
 }

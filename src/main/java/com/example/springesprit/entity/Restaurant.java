@@ -14,11 +14,11 @@ public class Restaurant {
     private Long idRestaurant; // Clé primaire
     private String nom;
     private Long nbPlacesMax;
+
     @ManyToOne
-    @JoinColumn(name="chaineRestauration_id")
     private ChaineRestauration chaineRestauration;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Menu> menu;
 
 }

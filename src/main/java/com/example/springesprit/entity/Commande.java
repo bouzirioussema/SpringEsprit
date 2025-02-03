@@ -21,6 +21,11 @@ public class Commande {
     private Long note;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
     private Client client;
+
+
+    @ManyToOne
+    private Menu menu;
+
+
 }
