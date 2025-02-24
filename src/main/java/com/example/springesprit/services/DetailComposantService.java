@@ -2,15 +2,17 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.DetailComposant;
 import com.example.springesprit.repository.DetailComposantRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class DetailComposantService implements IDetailComposantService {
 
     private final DetailComposantRepository detailComposantRepository;
 
-    public DetailComposantService(DetailComposantRepository detailComposantRepository) {
-        this.detailComposantRepository = detailComposantRepository;
-    }
 
     @Override
     public DetailComposant saveDetailComposant(DetailComposant detailComposant) {

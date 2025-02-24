@@ -4,6 +4,7 @@ import com.example.springesprit.entity.ChaineRestauration;
 
 import java.util.List;
 
+
 public interface IChaineRestaurationService {
 
 

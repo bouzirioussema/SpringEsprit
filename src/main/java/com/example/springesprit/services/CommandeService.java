@@ -2,16 +2,19 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Commande;
 import com.example.springesprit.repository.CommandeRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@AllArgsConstructor
+@Service
 public class CommandeService implements ICommandeService {
 
     private final CommandeRepository commandeRepository;
 
-    public CommandeService(CommandeRepository commandeRepository) {
-        this.commandeRepository = commandeRepository;
-    }
+
 
     @Override
     public Commande saveCommande(Commande commande) {

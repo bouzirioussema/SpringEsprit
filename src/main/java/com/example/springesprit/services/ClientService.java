@@ -2,16 +2,17 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Client;
 import com.example.springesprit.repository.ClientRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
 
-    public ClientService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
 
     @Override
     public Client saveClient(Client client) {

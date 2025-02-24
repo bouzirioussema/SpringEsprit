@@ -2,16 +2,18 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.ChaineRestauration;
 import com.example.springesprit.repository.ChaineRestaurationRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class ChaineRestaurationService implements IChaineRestaurationService {
 
     private final ChaineRestaurationRepository chaineRestaurationRepository;
 
-    public ChaineRestaurationService(ChaineRestaurationRepository chaineRestaurationRepository) {
-        this.chaineRestaurationRepository = chaineRestaurationRepository;
-    }
+
 
     @Override
     public ChaineRestauration saveChaineRestauration(ChaineRestauration chaineRestauration) {

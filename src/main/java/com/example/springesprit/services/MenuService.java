@@ -2,15 +2,18 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Menu;
 import com.example.springesprit.repository.MenuRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class MenuService implements IMenuService {
 
     private final MenuRepository menuRepository;
 
-    public MenuService(MenuRepository menuRepository) {
-        this.menuRepository = menuRepository;
-    }
+
 
     @Override
     public Menu saveMenu(Menu menu) {

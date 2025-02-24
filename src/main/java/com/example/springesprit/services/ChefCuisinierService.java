@@ -2,16 +2,18 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.ChefCuisinier;
 import com.example.springesprit.repository.ChefCuisinierRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class ChefCuisinierService implements IChefCuisinierService {
 
     private final ChefCuisinierRepository chefCuisinierRepository;
 
-    public ChefCuisinierService(ChefCuisinierRepository chefCuisinierRepository) {
-        this.chefCuisinierRepository = chefCuisinierRepository;
-    }
+
 
     @Override
     public ChefCuisinier saveChefCuisinier(ChefCuisinier chefCuisinier) {

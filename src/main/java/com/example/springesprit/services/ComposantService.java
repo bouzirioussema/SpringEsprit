@@ -2,18 +2,18 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Composant;
 import com.example.springesprit.repository.ComposantRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class ComposantService implements IComposantService {
 
     private final ComposantRepository composantRepository;
 
-    public ComposantService(ComposantRepository composantRepository) {
-        this.composantRepository = composantRepository;
-    }
+
 
     @Override
     public Composant saveComposant(Composant composant) {

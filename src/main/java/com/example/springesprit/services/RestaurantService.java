@@ -2,16 +2,18 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Restaurant;
 import com.example.springesprit.repository.RestaurantRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
+@AllArgsConstructor
+@Service
 public class RestaurantService implements IRestaurantService {
 
     private final RestaurantRepository restaurantRepository;
 
-    public RestaurantService(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
 
     @Override
     public Restaurant saveRestaurant(Restaurant restaurant) {
