@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -13,9 +14,8 @@ public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
 
-
     @Override
-    public Client saveClient(Client client) {
+    public Client addClient(Client client) {
         return clientRepository.save(client);
     }
 
@@ -31,16 +31,16 @@ public class ClientService implements IClientService {
 
     @Override
     public Client updateClient(Long id, Client client) {
-        return clientRepository.save(client);
+        Optional<Client> existingClient = clientRepository.findById(id);
+        if (existingClient.isPresent()) {
+            client.setIdClient(id); // On garde l'ID
+            return clientRepository.save(client);
+        }
+        return null; // Ou lancer une exception personnalisée
     }
 
     @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Client> addClients(List<Client> clients) {
-        return clientRepository.saveAll(clients);
     }
 }

@@ -1,13 +1,18 @@
 package com.example.springesprit.entity;
+
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 public class ChaineRestauration {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idChaineRestauration;
@@ -15,6 +20,6 @@ public class ChaineRestauration {
     private String libelle;
     private LocalDate dateCreation;
 
-    @OneToMany
-    private List<Restaurant> restaurant;
+    @OneToMany(mappedBy = "chaineRestauration", cascade = CascadeType.ALL)
+    private List<Restaurant> restaurants;
 }

@@ -1,23 +1,40 @@
 package com.example.springesprit.services;
 
+import com.example.springesprit.entity.Client;
 import com.example.springesprit.entity.Commande;
+import com.example.springesprit.entity.Menu;
 import com.example.springesprit.repository.CommandeRepository;
+import com.example.springesprit.repository.ClientRepository;
+import com.example.springesprit.repository.MenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class CommandeService implements ICommandeService {
 
     private final CommandeRepository commandeRepository;
-
-
+    private final ClientRepository clientRepository;
+    private final MenuRepository menuRepository;
 
     @Override
     public Commande saveCommande(Commande commande) {
+        // Vérifier si le client existe
+        Optional<Client> clientOpt = clientRepository.findById(commande.getClient().getIdClient());
+        if (!clientOpt.isPresent()) {
+            throw new RuntimeException("Client non trouvé");
+        }
+
+        // Vérifier si le menu existe
+        Optional<Menu> menuOpt = menuRepository.findById(commande.getMenu().getIdMenu());
+        if (!menuOpt.isPresent()) {
+            throw new RuntimeException("Menu non trouvé");
+        }
+
+        // Sauvegarder la commande si tout est valide
         return commandeRepository.save(commande);
     }
 
@@ -33,16 +50,15 @@ public class CommandeService implements ICommandeService {
 
     @Override
     public Commande updateCommande(Long id, Commande commande) {
-        return commandeRepository.save(commande);
+        if (commandeRepository.existsById(id)) {
+            commande.setIdCommande(id); // S'assurer que l'ID est bien conservé
+            return commandeRepository.save(commande);
+        }
+        return null;
     }
 
     @Override
     public void deleteCommande(Long id) {
         commandeRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Commande> addCommandes(List<Commande> commandes) {
-        return commandeRepository.saveAll(commandes);
     }
 }

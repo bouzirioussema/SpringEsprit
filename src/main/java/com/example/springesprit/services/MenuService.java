@@ -13,8 +13,6 @@ public class MenuService implements IMenuService {
 
     private final MenuRepository menuRepository;
 
-
-
     @Override
     public Menu saveMenu(Menu menu) {
         return menuRepository.save(menu);
@@ -32,6 +30,7 @@ public class MenuService implements IMenuService {
 
     @Override
     public Menu updateMenu(Long id, Menu menu) {
+        menu.setIdMenu(id); // S'assurer que l'ID reste le même
         return menuRepository.save(menu);
     }
 
@@ -43,5 +42,10 @@ public class MenuService implements IMenuService {
     @Override
     public List<Menu> addMenus(List<Menu> menus) {
         return menuRepository.saveAll(menus);
+    }
+
+    @Override
+    public Menu addMenu(Menu menu) {
+        return menuRepository.save(menu); // Correction ici !
     }
 }

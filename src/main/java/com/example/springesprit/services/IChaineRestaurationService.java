@@ -3,15 +3,11 @@ package com.example.springesprit.services;
 import com.example.springesprit.entity.ChaineRestauration;
 
 import java.util.List;
-
+import java.util.Optional;
 
 public interface IChaineRestaurationService {
-
-
     ChaineRestauration saveChaineRestauration(ChaineRestauration chaineRestauration);
-    ChaineRestauration getChaineRestaurationById(Long id);
-    List<ChaineRestauration> getAllChaineRestaurations();
-    ChaineRestauration updateChaineRestauration(Long id, ChaineRestauration chaineRestauration);
+    Optional<ChaineRestauration> getChaineRestaurationById(Long id);
+    List<ChaineRestauration> getAllChainesRestauration();
     void deleteChaineRestauration(Long id);
-    List<ChaineRestauration> addChaineRestaurations(List<ChaineRestauration> chaineRestaurations);
 }

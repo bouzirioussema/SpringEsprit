@@ -1,9 +1,12 @@
 package com.example.springesprit.entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 public class DetailComposant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,20 +5,24 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Restaurant {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idRestaurant;
 
-    private Long idRestaurant; // Clé primaire
     private String nom;
     private Long nbPlacesMax;
 
     @ManyToOne
+    @JoinColumn(name = "chaine_restauration_id")
     private ChaineRestauration chaineRestauration;
 
-    @OneToMany
-    private List<Menu> menu;
-
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Menu> menus;
 }

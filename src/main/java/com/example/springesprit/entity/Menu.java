@@ -1,12 +1,15 @@
 package com.example.springesprit.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +21,20 @@ public class Menu {
     @Enumerated(EnumType.STRING)
     private TypeMenu typeMenu;
 
+    @ManyToOne
+    private Restaurant restaurant; // Lien avec le restaurant
 
     @OneToMany
-    private List<Composant> composant;
+    private List<Composant> composants;
 
-    @OneToMany
-    private List<Composant> commande;
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<Commande> commandes;
 
     @ManyToMany
+    @JoinTable(
+            name = "menu_chef_cuisinier",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "chef_cuisinier_id")
+    )
     private List<ChefCuisinier> chefCuisiniers;
 }

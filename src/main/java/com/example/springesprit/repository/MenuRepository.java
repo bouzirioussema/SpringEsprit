@@ -14,10 +14,8 @@ public interface MenuRepository extends JpaRepository <Menu, Long> {
     @Query("SELECT m FROM Menu m ORDER BY m.typeMenu, m.prixTotal")
     List<Menu> findByTypeMenuOrderByPrixTotal();
 
-    @Query("SELECT DISTINCT m FROM m " +
-            "join m.composant c" +
-            "WHERE c.typeComposant = :typeComposant")
-    List<Menu> findMenuByComposantType(@Param("TypeComposant") String typeComposant);
+
+
 
 
 

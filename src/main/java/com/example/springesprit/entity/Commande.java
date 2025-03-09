@@ -1,14 +1,15 @@
 package com.example.springesprit.entity;
 
-
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,6 @@ public class Commande {
     @ManyToOne
     private Client client;
 
-
     @ManyToOne
     private Menu menu;
-
-
 }

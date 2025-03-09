@@ -1,11 +1,14 @@
 package com.example.springesprit.entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 public class Composant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +20,6 @@ public class Composant {
     @ManyToOne
     private Menu menu;
 
-    @OneToOne(mappedBy = "composant", cascade = CascadeType.ALL)
+    @OneToOne
     private DetailComposant detailsComposant;
 }
