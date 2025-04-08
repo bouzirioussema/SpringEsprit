@@ -1,6 +1,7 @@
 package com.example.springesprit.services;
 
 import com.example.springesprit.entity.Menu;
+import com.example.springesprit.entity.Restaurant;
 import com.example.springesprit.repository.MenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,11 @@ import java.util.List;
 public class MenuService implements IMenuService {
 
     private final MenuRepository menuRepository;
+
+    @Override
+    public Restaurant ajoutRestaurantEtMenuAssocies(Restaurant restaurant) {
+        return null;
+    }
 
     @Override
     public Menu saveMenu(Menu menu) {

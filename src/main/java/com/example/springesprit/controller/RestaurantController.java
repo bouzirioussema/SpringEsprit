@@ -1,5 +1,6 @@
 package com.example.springesprit.controller;
 
+import com.example.springesprit.entity.ChefCuisinier;
 import com.example.springesprit.entity.Restaurant;
 import com.example.springesprit.services.IRestaurantService;
 import lombok.AllArgsConstructor;
@@ -57,5 +58,12 @@ public class RestaurantController {
         }
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.ok("Restaurant supprimé avec succès !");
+    }
+
+    @PutMapping("/affecter-restaurant/{nomRestaurant}/{libelleChaine}")
+    public Restaurant affecterRestaurantAChaineRestauration(
+            @PathVariable("nomRestaurant") String nomRestaurant,
+            @PathVariable("libelleChaine") String libelleChaine) {
+        return restaurantService.affecterRestaurantAChaineRestauration(nomRestaurant, libelleChaine);
     }
 }

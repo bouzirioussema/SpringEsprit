@@ -61,4 +61,27 @@ public class CommandeService implements ICommandeService {
     public void deleteCommande(Long id) {
         commandeRepository.deleteById(id);
     }
+
+@Override
+public void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) {
+    Client client = clientRepository.findByIdentifiant(identifiant);
+    Menu menu = menuRepository.findByLibelle(libelleMenu);
+    commande.setClient(client);
+    commande.setMenu(menu);
+    commande.setTotalCommande(menu.getPrixTotal());
+    commandeRepository.save(commande);
+}
+
+
+
+
+@Override
+public void affecterNoteACommande(Long idCommande, Long Note) {
+    Commande commande = commandeRepository.findById(idCommande).orElse(null);
+    if (commande != null) {
+        commande.setNote(Note);
+        commandeRepository.save(commande);
+    }
+}
+
 }

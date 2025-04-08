@@ -10,4 +10,6 @@ public interface ICommandeService {
     List<Commande> getAllCommandes();
     Commande updateCommande(Long id, Commande commande);
     void deleteCommande(Long id);
+    void affecterNoteACommande(Long idCommande, Long Note);
+    void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu);
 }

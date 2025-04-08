@@ -41,4 +41,11 @@ public class ChefCuisinierController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Chef Cuisinier non trouvé !");
     }
+
+    @PutMapping("/affecter-chef-menu/{idChef}/{idMenu}")
+    public ChefCuisinier affecterChefCuisinierAMenu(
+            @PathVariable("idChef") Long idChef,
+            @PathVariable("idMenu") Long idMenu) {
+        return chefCuisinierService.affecterChefCuisinierAMenu(idChef, idMenu);
+    }
 }

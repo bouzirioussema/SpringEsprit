@@ -49,4 +49,11 @@ public class CommandeController {
         commandeService.deleteCommande(id);
         return ResponseEntity.ok("Commande supprimée avec succès !");
     }
+
+    @PutMapping("/affecter-note/{idCommande}/{note}")
+    public void affecterNoteACommande(
+            @PathVariable("idCommande") Long idCommande,
+            @PathVariable("note") Long note) {
+        commandeService.affecterNoteACommande(idCommande, note);
+    }
 }

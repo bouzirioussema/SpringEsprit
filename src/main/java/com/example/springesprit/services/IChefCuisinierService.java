@@ -10,4 +10,6 @@ public interface IChefCuisinierService {
     Optional<ChefCuisinier> getChefCuisinierById(Long id);
     List<ChefCuisinier> getAllChefsCuisiniers();
     void deleteChefCuisinier(Long id);
+    ChefCuisinier affecterChefCuisinierAMenu(Long idChefCuisinier, Long idMenu);
+    ChefCuisinier desaffecterChefCuisinierDuMenu(Long idChefCuisinier, Long idMenu);
 }

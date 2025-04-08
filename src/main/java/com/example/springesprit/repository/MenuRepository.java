@@ -15,11 +15,5 @@ public interface MenuRepository extends JpaRepository <Menu, Long> {
     List<Menu> findByTypeMenuOrderByPrixTotal();
 
 
-
-
-
-
-
-
-
+    Menu findByLibelle(String libelleMenu);
 }
