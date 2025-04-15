@@ -1,6 +1,7 @@
 package com.example.springesprit.controller;
 
 import com.example.springesprit.entity.ChefCuisinier;
+import com.example.springesprit.entity.TypeChef;
 import com.example.springesprit.services.IChefCuisinierService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/chefCuisinier")
+@RequestMapping("/chef-cuisinier")
 public class ChefCuisinierController {
 
     private final IChefCuisinierService chefCuisinierService;
@@ -47,5 +48,13 @@ public class ChefCuisinierController {
             @PathVariable("idChef") Long idChef,
             @PathVariable("idMenu") Long idMenu) {
         return chefCuisinierService.affecterChefCuisinierAMenu(idChef, idMenu);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<ChefCuisinier>> getChefsByTypeAndRestaurant(
+            @RequestParam TypeChef typeChef,
+            @RequestParam String nomRestaurant) {
+        List<ChefCuisinier> chefs = chefCuisinierService.listChefCuisinierByTypeChefAndRestaurant(typeChef, nomRestaurant);
+        return ResponseEntity.ok(chefs);
     }
 }

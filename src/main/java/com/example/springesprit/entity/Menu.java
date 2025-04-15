@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,4 +38,6 @@ public class Menu {
             inverseJoinColumns = @JoinColumn(name = "chef_cuisinier_id")
     )
     private List<ChefCuisinier> chefCuisiniers;
+
+
 }

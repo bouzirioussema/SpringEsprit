@@ -1,5 +1,6 @@
 package com.example.springesprit.controller;
 
+import com.example.springesprit.entity.Composant;
 import com.example.springesprit.entity.Menu;
 import com.example.springesprit.services.IMenuService;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -58,5 +60,27 @@ public class MenuController {
         }
         menuService.deleteMenu(id);
         return ResponseEntity.ok("Menu avec ID " + id + " supprimé avec succès !");
+    }
+
+    // Ajouter des composants à un menu et mettre à jour le prix
+    @PutMapping("/add-composants/{idMenu}")
+    public ResponseEntity<?> ajoutComposantsEtMiseAjourPrixMenu(
+            @PathVariable Long idMenu, 
+            @RequestBody Set<Composant> composants) {
+        try {
+            Menu updatedMenu = menuService.ajoutComposantsEtMiseAjourPrixMenu(composants, idMenu);
+            return ResponseEntity.ok(updatedMenu);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    // Filtrer les menus par type et prix minimum
+    @GetMapping("/filter")
+    public ResponseEntity<List<Menu>> getMenusByTypeAndMinPrice(
+            @RequestParam TypeMenu typeMenu,
+            @RequestParam Float prixTotal) {
+        List<Menu> menus = menuService.listeMenuSelonTypeMenuEtprixComposantsSuperieurAUnMontant(typeMenu, prixTotal);
+        return ResponseEntity.ok(menus);
     }
 }

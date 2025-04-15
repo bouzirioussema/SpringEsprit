@@ -2,8 +2,11 @@ package com.example.springesprit.services;
 
 import com.example.springesprit.entity.ChefCuisinier;
 import com.example.springesprit.entity.Menu;
+import com.example.springesprit.entity.Restaurant;
+import com.example.springesprit.entity.TypeChef;
 import com.example.springesprit.repository.ChefCuisinierRepository;
 import com.example.springesprit.repository.MenuRepository;
+import com.example.springesprit.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -76,4 +79,12 @@ public class ChefCuisinierService implements IChefCuisinierService {
         return chefCuisinier;
     }
 
+        @Override
+    public List<ChefCuisinier> listChefCuisinierByTypeChefAndRestaurant(TypeChef typeChef, String nomRestaurant) {
+        return chefCuisinierRepository.findAll().stream()
+                .filter(chef -> chef.getTypeChef() == typeChef)
+                .filter(chef -> chef.getEtoiles() == 1)
+                .filter(chef -> chef.getRestaurant().getNom().equalsIgnoreCase(nomRestaurant))
+                .collect(Collectors.toList());
+    }
 }

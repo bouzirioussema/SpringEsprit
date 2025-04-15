@@ -10,10 +10,25 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MenuRepository extends JpaRepository <Menu, Long> {
-    List<Menu> findByTypeMenuAndPrixTotalGreaterThan(TypeMenu typeMenu, double montant);
-    @Query("SELECT m FROM Menu m ORDER BY m.typeMenu, m.prixTotal")
-    List<Menu> findByTypeMenuOrderByPrixTotal();
 
 
+    @Query("SELECT m FROM Menu m WHERE m.typeMenu = :typeMenu ORDER BY m.prixTotal ASC")
+    List<Menu> findByTypeMenuAndOrderByPrixTotal(TypeMenu typeMenu);
+
+
+
+
+
+    @Query("select m.libelleMenu from Menu m  join m.composants c where c.DetailComposant  = :typeComposant")
+    List <Menu> findByTypeComposant(TypeComposant typeComposant);
+
+
+
+    //findbylibelle
+    @Query("SELECT m FROM Menu m WHERE m.libelleMenu = :libelleMenu")
     Menu findByLibelle(String libelleMenu);
+
+
+    @Query("SELECT m FROM Menu m WHERE m.typeMenu = :typeMenu AND m.prixTotal > :prixTotal")
+    List<Menu> findByTypeMenuAndPrixTotalGreaterThan(TypeMenu typeMenu , Float prixTotal);
 }

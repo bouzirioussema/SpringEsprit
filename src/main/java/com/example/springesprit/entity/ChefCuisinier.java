@@ -1,28 +1,24 @@
 package com.example.springesprit.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
-import java.util.List;
+import javax.persistence.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
-@Getter
-@Setter
 public class ChefCuisinier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idChefCuisinier;
+    private Long id;
 
     private String nom;
-    private String prenom;
+
+    private int etoiles;
 
     @Enumerated(EnumType.STRING)
     private TypeChef typeChef;
 
-    @ManyToMany(mappedBy = "chefCuisiniers", cascade = CascadeType.ALL)
-    private List<Menu> menus;
-
+    @ManyToOne
+    private Restaurant restaurant;
 }

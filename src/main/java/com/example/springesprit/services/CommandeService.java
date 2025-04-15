@@ -65,7 +65,7 @@ public class CommandeService implements ICommandeService {
 @Override
 public void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) {
     Client client = clientRepository.findByIdentifiant(identifiant);
-    Menu menu = menuRepository.findByLibelle(libelleMenu);
+    Menu menu = menuRepository.findBylibelleMenu(libelleMenu);
     commande.setClient(client);
     commande.setMenu(menu);
     commande.setTotalCommande(menu.getPrixTotal());
